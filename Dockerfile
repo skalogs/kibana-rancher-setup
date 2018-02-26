@@ -2,6 +2,8 @@ FROM alpine:3.7
 
 ADD startup.sh /usr/bin/startup.sh
 
+RUN ["chmod", "+x", "/usr/bin/startup.sh"]
+
 RUN apk add --update bash curl && \
     rm -rf /var/cache/apk/*
 
