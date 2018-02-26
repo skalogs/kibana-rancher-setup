@@ -38,7 +38,7 @@ INDEX_PATTERN=$(curl --silent ${RANCHER_BASEURL}/self/service/metadata/index-pat
 
 if [ ! -z "${INDEX_PATTERN}" ]; then
     while read INDEX TIME_FIELD ; do
-        echo "\nCreate index pattern"
+        printf "\nCreate index pattern"
         curl -f -XPOST "$KIBANA_URL/api/saved_objects/index-pattern/$INDEX" \
              -H "Content-Type: application/json" \
              -H "kbn-xsrf: anything" \
@@ -47,7 +47,7 @@ if [ ! -z "${INDEX_PATTERN}" ]; then
     done <<< "$INDEX_PATTERN"
 
     if [ ! -z "${DEFAULT_INDEX_PATTERN}" ]; then
-        echo "\nSetting default index pattern"
+        printf "\nSetting default index pattern"
         curl ${KIBANA_URL}/api/kibana/settings/defaultIndex \
 	         -H "Content-Type: application/json" \
 	         -H "kbn-xsrf: anything" \
